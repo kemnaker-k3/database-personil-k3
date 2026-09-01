@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Personil K3</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111111;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            margin: auto;
+            background: #ffffff;
+            padding-bottom: 80px;
+        }
+
+        /* HEADER */
+        .header {
+            height: 105px;
+            background: #17466f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+        }
+
+        .logo-symbol {
+            width: 52px;
+            height: 52px;
+            border: 6px solid white;
+            border-radius: 14px;
+            transform: rotate(45deg);
+            position: relative;
+        }
+
+        .logo-symbol::after {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            left: 11px;
+            top: 11px;
+            border-radius: 4px;
+        }
+
+        .logo-text {
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-text span {
+            color: #55e600;
+        }
+
+        /* BANNER */
+        .banner {
+            height: 185px;
+            background: linear-gradient(180deg, #eef6ff, #7eaaff);
+            padding: 18px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-title {
+            font-size: 27px;
+            font-weight: 900;
+            color: #ed2727;
+            margin-left: 35px;
+            margin-top: 5px;
+        }
+
+        .banner-subtitle {
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .banner-info {
+            font-size: 10px;
+            line-height: 1.7;
+            color: #132c80;
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* SECTION */
+        .section-title {
+            background: #17466f;
+            color: white;
+            font-size: 19px;
+            padding: 8px 12px;
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+            padding: 16px 10px 10px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #666;
+        }
+
+        .dot.active {
+            width: 35px;
+            border-radius: 10px;
+            background: #17466f;
+        }
+
+        .content {
+            padding: 15px 18px 25px;
+        }
+
+        .content h1 {
+            font-size: 25px;
+            margin: 0 0 3px;
+        }
+
+        .content p {
+            margin: 0 0 25px;
+            font-size: 18px;
+        }
+
+        /* MENU */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px 15px;
+        }
+
+        .menu-item {
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .menu-box {
+            height: 115px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+        }
+
+        .menu-label {
+            font-size: 16px;
+            line-height: 1.3;
+            margin-top: 8px;
+        }
+
+        /* FOOTER */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            height: 72px;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.12);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-item {
+            text-align: center;
+            font-size: 13px;
+            color: #17466f;
+        }
+
+        .nav-icon {
+            font-size: 25px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .nav-center {
+            width: 62px;
+            height: 62px;
+            margin-top: -32px;
+            border-radius: 50%;
+            background: #17466f;
+            color: white;
+            border: 5px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        @media (min-width: 600px) {
+            .app {
+                box-shadow: 0 0 25px rgba(0,0,0,0.1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+        <div class="logo-symbol"></div>
+
+        <div class="logo-text">
+            TEMAN<span>K3</span>
+        </div>
+    </div>
+
+    <div class="banner">
+        <div class="banner-title">
+            🟢 WA CHAT LAYANAN K3
+        </div>
+
+        <div class="banner-subtitle">
+            WAKTU LAYANAN : Pukul 09.00-15.30 WIB
+        </div>
+
+        <div class="banner-info">
+            0823-1319-0912 &nbsp; Layanan Penerbitan SKP PJK3<br>
+            0823-1319-0913 &nbsp; Layanan Penerbitan SKP dan Lisensi Personil K3<br>
+            0823-1319-0914 &nbsp; Layanan Penerbitan SKP dan Lisensi Personil Bidang Kesehatan Kerja
+        </div>
+    </div>
+
+    <div class="section-title">
+        WA CHAT
+    </div>
+
+    <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <div class="content">
+
+        <h1>Layanan</h1>
+        <p>Layanan Dan Fitur Data Personil K3</p>
+
+        <div class="menu-grid">
+
+            <div class="menu-item" onclick="bukaPencarian()">
+                <div class="menu-box">⚙️</div>
+                <div class="menu-label">
+                    Cari Sertifikat/<br>
+                    Lisensi
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-box">👨‍💼</div>
+                <div class="menu-label">
+                    Cari SKP Ahli
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-box">💻</div>
+                <div class="menu-label">
+                    Cari SKP<br>
+                    Auditor
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-box">📄</div>
+                <div class="menu-label">
+                    Cari SKP Dokter
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-box">🏢</div>
+                <div class="menu-label">
+                    Data PJK3
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-box">👥</div>
+                <div class="menu-label">
+                    Lembaga<br>
+                    Audit
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-box">🔎</div>
+                <div class="menu-label">
+                    Dokumen K3
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-box">📊</div>
+                <div class="menu-label">
+                    Flowchart<br>
+                    Layanan
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="bottom-nav">
+
+    <div class="nav-item">
+        <span class="nav-icon">⌂</span>
+        Home
+    </div>
+
+    <div class="nav-item">
+        <span class="nav-icon">📢</span>
+        Info
+    </div>
+
+    <div class="nav-center">
+        ▦
+    </div>
+
+    <div class="nav-item">
+        <span class="nav-icon">📖</span>
+        FAQ
+    </div>
+
+    <div class="nav-item">
+        <span class="nav-icon">♙</span>
+        Akun
+    </div>
+
+</div>
+
+<script>
+    function bukaPencarian() {
+        alert("Menu Cari Sertifikat/Lisensi berhasil diklik.");
+    }
+</script>
+
+</body>
+</html>
