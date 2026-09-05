@@ -1,400 +1,412 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hasil Scan QR</title>
+  <title>Hasil Scan QR - TEMANK3</title>
 
-<style>
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    background: white;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* =========================
-   LOADING
-========================= */
-
-#loading {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: #194b76;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.4s ease;
-}
-
-#loading img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#loading.hide {
-    opacity: 0;
-    pointer-events: none;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-.header {
-    height: 85px;
-    background: #194b76;
-    color: white;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 20px;
-
-    gap: 15px;
-
-    position: sticky;
-    top: 0;
-
-    z-index: 100;
-}
-
-.back {
-    border: none;
-    background: none;
-
-    color: white;
-
-    font-size: 44px;
-    line-height: 1;
-
-    cursor: pointer;
-
-    width: 40px;
-}
-
-.header-title {
-    font-size: 30px;
-    font-weight: bold;
-}
-
-
-/* =========================
-   BIODATA
-========================= */
-
-.biodata {
-    width: 100%;
-    background: white;
-}
-
-.biodata img {
-    width: 100%;
-    height: auto;
-
-    display: block;
-
-    margin: 0;
-}
-
-
-/* =========================
-   DATA TIDAK ADA
-========================= */
-
-.not-found {
-    display: none;
-
-    padding: 80px 20px;
-
-    text-align: center;
-
-    font-size: 22px;
-    font-weight: bold;
-
-    color: #194b76;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-.footer {
-    min-height: 190px;
-
-    background: #194b76;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    color: white;
-
-    padding: 30px 20px;
-}
-
-.footer-logo {
-    font-size: 38px;
-    font-weight: bold;
-}
-
-.footer-logo span {
-    color: #39ff00;
-}
-
-.footer-text {
-    margin-top: 10px;
-
-    font-size: 18px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 600px) {
-
-    .header {
-        height: 75px;
-        padding: 0 15px;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .back {
-        font-size: 40px;
-        width: 35px;
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #194b76;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    #loading.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #loading img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: #194b76;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      color: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .back-button {
+      width: 65px;
+      height: 75px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
     }
 
     .header-title {
-        font-size: 27px;
+      font-size: 22px;
+      font-weight: bold;
     }
+
+    /* =========================
+       BIODATA
+    ========================= */
+
+    .biodata {
+      width: 100%;
+      background: #ffffff;
+      min-height: 200px;
+    }
+
+    .biodata img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* =========================
+       DATA TIDAK DITEMUKAN
+    ========================= */
+
+    #notFound {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      color: #555;
+      font-size: 18px;
+    }
+
+    #notFound.show {
+      display: block;
+    }
+
+    /* =========================
+       FOOTER LOGO
+    ========================= */
 
     .footer {
-        min-height: 160px;
+      width: 100%;
+      background: #194b76;
+      padding: 30px 15px;
     }
 
-    .footer-logo {
-        font-size: 30px;
+    .footer-logos {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 30px;
+      flex-wrap: wrap;
     }
 
-    .footer-text {
-        font-size: 15px;
+    .footer-logos img {
+      width: 150px;
+      height: 100px;
+      object-fit: contain;
+      display: block;
     }
-}
-</style>
+
+    /* =========================
+       HP
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      .header {
+        height: 65px;
+      }
+
+      .back-button {
+        width: 55px;
+        height: 65px;
+        font-size: 32px;
+      }
+
+      .header-title {
+        font-size: 18px;
+      }
+
+      .footer {
+        padding: 25px 10px;
+      }
+
+      .footer-logos {
+        gap: 10px;
+      }
+
+      .footer-logos img {
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+    /* =========================
+       HP KECIL
+    ========================= */
+
+    @media (max-width: 380px) {
+
+      .header-title {
+        font-size: 16px;
+      }
+
+      .footer-logos {
+        gap: 5px;
+      }
+
+      .footer-logos img {
+        width: 65px;
+        height: 65px;
+      }
+    }
+  </style>
 </head>
 
 
 <body>
 
+  <!-- =========================
+       LOADING
+  ========================= -->
 
-<!-- =========================
-     LOADING
-========================= -->
-
-<div id="loading">
-
-    <img
-        src="loading.jpg"
-        alt="Loading Teman K3"
-    >
-
-</div>
+  <div id="loading">
+    <img src="loading.jpg" alt="Loading">
+  </div>
 
 
+  <!-- =========================
+       HEADER
+  ========================= -->
 
-<!-- =========================
-     HEADER
-========================= -->
-
-<header class="header">
+  <header class="header">
 
     <button
-        class="back"
-        onclick="kembali()"
-        aria-label="Kembali"
-    >
-        ‹
+      class="back-button"
+      onclick="kembali()"
+      aria-label="Kembali">
+      ‹
     </button>
 
     <div class="header-title">
-        Hasil Scan QR
+      Hasil Scan QR
     </div>
 
-</header>
+  </header>
 
 
+  <!-- =========================
+       BIODATA
+  ========================= -->
 
-<!-- =========================
-     BIODATA
-========================= -->
-
-<main class="biodata">
+  <main class="biodata">
 
     <img
-        id="biodataImage"
-        alt="Biodata Personil"
-    >
+      id="biodataImage"
+      src=""
+      alt="Biodata Personil">
 
-    <div
-        id="notFound"
-        class="not-found"
-    >
-        Data personil tidak ditemukan.
+    <div id="notFound">
+      Data personil tidak ditemukan.
     </div>
 
-</main>
+  </main>
 
 
+  <!-- =========================
+       FOOTER 4 LOGO
+  ========================= -->
 
-<!-- =========================
-     FOOTER
-========================= -->
+  <footer class="footer">
 
-<footer class="footer">
+    <div class="footer-logos">
 
-    <div>
+      <img
+        src="k3-keselamatan-logo.png"
+        alt="Utamakan Keselamatan dan Kesehatan Kerja">
 
-        <div class="footer-logo">
-            TEMAN<span>K3</span>
-        </div>
+      <img
+        src="tangan-k3.png"
+        alt="Logo K3">
 
-        <div class="footer-text">
-            Pelayanan Keselamatan dan Kesehatan Kerja
-        </div>
+      <img
+        src="K3-Unggul-Indonesia-Maju.png"
+        alt="K3 Unggul Indonesia Maju">
+
+      <img
+        src="Fin_logo_g20-01.png"
+        alt="G20 Indonesia 2022">
 
     </div>
 
-</footer>
+  </footer>
 
 
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
-<script>
+  <script>
 
-/* =========================
-   NOMOR PERSONIL
-========================= */
+    /* =========================
+       BACA ID DARI URL
+       Contoh:
+       ?id=001
+       ?id=002
+       ?id=003
+    ========================= */
 
-const parameter =
-    new URLSearchParams(window.location.search);
+    const parameter =
+      new URLSearchParams(window.location.search);
 
-let nomor =
-    parameter.get("id") || "001";
+    let nomor =
+      parameter.get("id") || "001";
+
+    let angka =
+      parseInt(nomor);
 
 
-/*
-   Mengubah:
+    /* =========================
+       BATAS DATA 001 - 1000
+    ========================= */
 
-   1    → 001
-   2    → 002
-   10   → 010
-   100  → 100
-*/
+    if (
+      !isNaN(angka) &&
+      angka >= 1 &&
+      angka <= 1000
+    ) {
 
-let angka = parseInt(nomor);
-
-if (
-    !isNaN(angka) &&
-    angka >= 1 &&
-    angka <= 1000
-) {
-
-    nomor =
+      nomor =
         String(angka).padStart(3, "0");
-
-} else {
-
-    nomor = "001";
-
-}
-
-
-/* =========================
-   TAMPILKAN GAMBAR
-========================= */
-
-const gambar =
-    document.getElementById("biodataImage");
-
-const notFound =
-    document.getElementById("notFound");
-
-
-gambar.src =
-    nomor + ".jpg";
-
-
-/* Kalau gambar tidak ada */
-
-gambar.onerror = function() {
-
-    gambar.style.display = "none";
-
-    notFound.style.display = "block";
-
-    notFound.innerHTML =
-        "Data personil " +
-        nomor +
-        " belum tersedia.";
-
-};
-
-
-/* =========================
-   TOMBOL KEMBALI
-========================= */
-
-function kembali() {
-
-    if (window.history.length > 1) {
-
-        window.history.back();
 
     } else {
 
+      nomor = "001";
+
+    }
+
+
+    /* =========================
+       TAMPILKAN GAMBAR BIODATA
+    ========================= */
+
+    const gambar =
+      document.getElementById("biodataImage");
+
+    const notFound =
+      document.getElementById("notFound");
+
+
+    gambar.src =
+      nomor + ".jpg";
+
+
+    /* =========================
+       JIKA GAMBAR TIDAK ADA
+    ========================= */
+
+    gambar.onerror = function () {
+
+      gambar.style.display = "none";
+
+      notFound.classList.add("show");
+
+    };
+
+
+    /* =========================
+       TOMBOL KEMBALI
+    ========================= */
+
+    function kembali() {
+
+      if (history.length > 1) {
+
+        history.back();
+
+      } else {
+
         window.location.href = "./";
 
+      }
+
     }
 
-}
 
+    /* =========================
+       HILANGKAN LOADING
+       SETELAH 1,8 DETIK
+    ========================= */
 
-/* =========================
-   LOADING
-========================= */
-
-window.addEventListener(
-    "load",
-    function() {
+    window.addEventListener(
+      "load",
+      function () {
 
         setTimeout(
-            function() {
+          function () {
 
-                document
-                    .getElementById("loading")
-                    .classList.add("hide");
+            document
+              .getElementById("loading")
+              .classList.add("hide");
 
-            },
-            1800
+          },
+          1800
         );
 
-    }
-);
+      }
+    );
 
-</script>
+  </script>
 
 </body>
 </html>
